@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
+}
+
+.subtable {
+    background-color: rgb(110, 110, 110);
+    color: white;
+}
+
+.relatorio header {
+    text-align: center;
+}

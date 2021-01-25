@@ -63,9 +63,11 @@ class Util
     // Cortar a string se for maior que 55
     public static function stripStringBiggerThan55($string)
     {
-        if (strlen($string) > 55) {
-            return substr($string, 0, 55) . '...';
+        if (strlen($string) > 40) {
+            return substr($string, 0, 40) . '...';
         }
+
+        return $string;
     }
 
     public static function createSchemaNameByRazaoSocial($razao_social)

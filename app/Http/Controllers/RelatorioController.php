@@ -24,7 +24,7 @@ class RelatorioController extends Controller
     public function byCategoria(Request $request)
     {
         $data = ApiController::request('/api/relatorio/categoria?categoria_id=' . $request->categoria_id . '&data_inicial=' . $request->data_inicial . '&data_final=' . $request->data_final, 'GET');
-        
+
         $categoria = Categoria::find($request->categoria_id);
 
         $data['categoria'] = $categoria->descricao;
@@ -44,6 +44,7 @@ class RelatorioController extends Controller
     public function byPeriodo(Request $request)
     {
         $data = ApiController::request('/api/relatorio/periodo?data_inicial=' . $request->data_inicial . '&data_final=' . $request->data_final, 'GET');
+
         $data['data_requisicao'] = Carbon::now()->format('d/m/Y');
         $data['data_inicial'] = Carbon::parse($request->data_inicial)->format('d/m/Y');
         $data['data_final'] = Carbon::parse($request->data_final)->format('d/m/Y');

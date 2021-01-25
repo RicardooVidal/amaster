@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Adega Master</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="{{'/images/favicon.png'}}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('images/favicon.png')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
 </head>
 <body>
     <div id="loading">
-        <img id="loading-image" src="{{'/images/ajax-loader.gif'}}" alt="Carregando..." />
+        <img id="loading-image" src="{{asset('images/ajax-loader.gif')}}" alt="Carregando..." />
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-2 d-flex justify-content-between">
         <a class="navbar-brand" href="/">

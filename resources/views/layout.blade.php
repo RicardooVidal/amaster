@@ -8,7 +8,7 @@
     <title>Adega Master</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{'/images/favicon.png'}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://localhost:8000/css/app.css">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>

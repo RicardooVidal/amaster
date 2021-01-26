@@ -44,7 +44,9 @@ let finishVendaPendente = function(id) {
     troco,
   }
   
+  showLoading();
   let response = venda.finishPendente(data);
+  stopLoading();
   
   modal.closeModal();
   message.checkAndCreateMessageByStatus(response.status, response.msg);

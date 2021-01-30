@@ -358,9 +358,9 @@ document.querySelector('#produto-quantidade-estoque').addEventListener("change",
 
 let saveProduct = function() {
   if (checkForRequiredProductFields()) {
+    modal.closeModal();
     let data = getAllProductsFields();
     let response = produto.saveProduct(data);
-    modal.closeModal();
     message.checkAndCreateMessageByStatus(response.status, response.msg);
     destroyProductTable();
   }
@@ -368,9 +368,9 @@ let saveProduct = function() {
 
 let updateProduct = function() {
   if (checkForRequiredProductFields()) {
+    modal.closeModal();
     let data = getAllProductsFields();
     let response = produto.updateProduct(data);
-    modal.closeModal();
     message.checkAndCreateMessageByStatus(response.status, response.msg);
     setButtonAndFields(data.id);
     destroyProductTable();
@@ -378,9 +378,9 @@ let updateProduct = function() {
 }
 
 let deleteProduct = function() {
+  modal.closeConfirmModal();
   let id = document.querySelector('#deletar-id').value;
   let response = produto.deleteProduct(id);
-  modal.closeConfirmModal();
   if (response.status == 500) {
     message.createMessage('danger', 'Não foi possível excluir o produto. Verifique se o mesmo possui venda.')
   } else {

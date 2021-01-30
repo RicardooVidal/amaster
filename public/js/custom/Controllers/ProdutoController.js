@@ -16,17 +16,23 @@ export class ProdutoController extends ApiController {
     }
 
     saveProduct(data) {
+        showLoading();
         let response = super.getResponse('produto/', 'POST', data);
+        stopLoading();
         return response;
     }
 
     updateProduct(data) {
+        showLoading();
         let response = super.getResponse('produto/' + data.id, 'PUT', data);
+        stopLoading();
         return response;
     }
 
     deleteProduct(id) {
+        showLoading();
         let response = super.getResponse('produto/' + id, 'DELETE');
+        stopLoading();
         return response;
     }
 

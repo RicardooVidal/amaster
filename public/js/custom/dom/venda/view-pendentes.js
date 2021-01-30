@@ -22,8 +22,8 @@ let destroyVendaPendentesTable = function() {
 }
 
 let deleteVendaPendente = function(id) {
-  let response = venda.deleteVenda(id);
   modal.closeConfirmModal();
+  let response = venda.deleteVenda(id);
   message.checkAndCreateMessageByStatus(response.status, response.msg);
   destroyVendaPendentesTable();
 }
@@ -43,12 +43,10 @@ let finishVendaPendente = function(id) {
     tipo_pagamento_id,
     troco,
   }
-  
-  showLoading();
-  let response = venda.finishPendente(data);
-  stopLoading();
-  
+
   modal.closeModal();
+  let response = venda.finishPendente(data);
+  
   message.checkAndCreateMessageByStatus(response.status, response.msg);
   destroyVendaPendentesTable();
   $("html, body").animate({ scrollTop: 1.5 }, "slow");

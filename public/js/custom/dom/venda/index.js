@@ -50,9 +50,7 @@ let finishVenda = function() {
         message.createMessage('danger', 'Não há produtos na venda!');
         return;
     }
-    showLoading();
     let response = venda.finish(data);
-    stopLoading();
     resetVendaPage();
     message.checkAndCreateMessageByStatus(response.status, response.msg);
     checkVendasPendentes();

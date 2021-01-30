@@ -50,17 +50,23 @@ export class VendaController extends ApiController {
     }
 
     deleteVenda(id) {
+        showLoading();
         let response = super.getResponse('venda/' + id, 'DELETE');
+        stopLoading();
         return response;
     }
 
     finish(data) {
+        showLoading();
         let response = super.getResponse('venda/', 'POST', data);
+        stopLoading();
         return response;
     }
 
     finishPendente(data) {
+        showLoading();
         let response = super.getResponse('venda/' + data.id, 'PUT', data);
+        stopLoading();
         return response;
     }
 

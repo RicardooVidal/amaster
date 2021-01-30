@@ -123,7 +123,6 @@ let checkForRequiredProductFields = function() {
     });
     return false;
   }
-  
   return true;
 }
 

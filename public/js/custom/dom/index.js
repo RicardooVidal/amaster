@@ -29,12 +29,12 @@ let setMaisVendido = function(response) {
 }
 
 let getMaisVendido = function() {
-    let dia = getCurrentDay();
+    let ultimoDiaDoMes = getCurrentDay();
     let mes = getCurrentMonth();
     let ano = getCurrentYear();
 
     let data_inicial = ano + '-' + mes + '-' + '01'
-    let data_final = ano + '-' + mes + '-' + '31'
+    let data_final = ano + '-' + mes + '-' + ultimoDiaDoMes
 
     let data = {
         data_inicial,

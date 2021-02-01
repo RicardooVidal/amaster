@@ -130,6 +130,11 @@ function getCurrentDay() {
   return d.getDay();
 }
 
+function getLastDayOfMonth() {
+  var d = new Date(2021, 01 + 1, 0);
+  return d.getUTCDate();
+}
+
 function stripStringBiggerThan55(string)
 {
   if (string.length > 55) {

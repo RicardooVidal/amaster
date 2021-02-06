@@ -165,7 +165,7 @@ let fillVendasTable = function() {
       td_venda_observacao.appendChild(text_venda_observacao);
   
       td_venda_tipo_pagamento = document.createElement('td');
-      td_venda_tipo_pagamento.setAttribute('style','text-align: center;');
+      td_venda_tipo_pagamento.setAttribute('style','text-align: center; width: 0px;');
       text_tipo_pagamento = document.createTextNode(tipo_pagamento.descricao);
       td_venda_tipo_pagamento.appendChild(text_tipo_pagamento);
 

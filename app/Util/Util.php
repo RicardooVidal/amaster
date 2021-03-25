@@ -74,7 +74,25 @@ class Util
     {
         $razao_social = Util::toLowerCase($razao_social);
         $schema = str_replace(' ', '', $razao_social) . rand(0, 200);
+        $schema = Util::clean($schema);
 
         return $schema;
+    }
+
+    public static function clean($string)
+    {
+        $toRemove = [
+            '/!/' => '',
+            '/@/' => '',
+            '/#/' => '',
+            '/$/' => '',
+            '/%/' => '',
+            '/¬/' => '',
+            '/&/' => '',
+            '/\*/' => ''
+        ];
+
+        return preg_replace(array_keys($toRemove), array_values($toRemove), $string);
+
     }
 }

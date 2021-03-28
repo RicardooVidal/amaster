@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 Route::middleware('auth')->group(function() {
     Route::middleware([CheckApi::class])->group(function () {
         Route::post('/empresa', 'EmpresaController@store')->name('empresa.create');
+        Route::get('/empresa/check', 'EmpresaController@check')->name('empresa.check');
         Route::get('/', 'HomeController@index')->name('home');
 
         Route::get('/get-token', function() {

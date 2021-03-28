@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Empresa;
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Util\Database;
 use Exception;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;

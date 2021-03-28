@@ -26,6 +26,13 @@ class HomeController extends Controller
         if (Auth::user()->id_empresa == 0) {
             return view('home.first-access');
         }
+
+        $licenca = EmpresaController::check();
+
+        if ($licenca['status'] == 401) {
+            abort(401, $licenca['msg']);
+        }
+
         return view('home.index');
     }
 }

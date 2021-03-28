@@ -45,4 +45,16 @@ class EmpresaController extends Controller
             throw new Exception($e->getMessage());
         }
     }
+
+    public static function check()
+    {
+        $response = ApiController::request('/api/billing/check', 'GET');
+
+        $response = [
+            'msg' => $response['msg'],
+            'status' => $response['status']
+        ];
+        
+        return $response;
+    }
 }

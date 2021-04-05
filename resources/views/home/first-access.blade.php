@@ -19,6 +19,12 @@
                 <label for="password" class="mt-2">Senha (*):</label>
                 <input type="password" class="form-control" name="password" placeholder="Por razões de segurança, mude sua senha" autocomplete="off" required>
             </div>
+            <p style="text-align: center">
+                Ao finalizar você estará aceitando que o Adega Master se encontra na versão <strong>beta</strong> e que está sujeito a bugs e constantes atualizações. 
+                Ao finalizar você estará entrando em programa de demonstração que será contabilizado a partir da data de hoje somado 30 dias.
+                Após este período, se houver interesse no produto, verificar com o administrador para liberação via pagamento.
+                Qualquer dúvida favor entrar em contato no e-mail <strong>contato@ricardovidal.xyz</strong> e para reportar bugs, favor enviar para <strong>reports@ricardovidal.xyz</strong>
+            </p>
             <input type="submit" id="finalizar" class="btn btn-primary btn-block mt-3" value="Finalizar" data-toggle="modal" data-target="#generic-modal-confirm"></button>
         </form>
         <a class="btn btn-danger btn-block mt-3" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

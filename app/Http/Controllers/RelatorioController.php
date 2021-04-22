@@ -59,8 +59,8 @@ class RelatorioController extends Controller
             $data['valor_lucro'] = true;
         }
 
-        // return PDF::viewToPDF('relatorio.maker.periodo', $data);
-        return view('relatorio.maker.periodo')->with('data', $data);
+        return PDF::viewToPDF('relatorio.maker.periodo', $data);
+        // return view('relatorio.maker.periodo')->with('data', $data);
     }
 
     public function tipo_pagamento()

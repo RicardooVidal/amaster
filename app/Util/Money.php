@@ -31,4 +31,26 @@ class Money {
 
         return $valueConverted;
     }
+
+    /** Calcula margem de lucro
+    * @params $preco_custo
+    * @params $preco_venda
+    * @returns integer
+    */
+    public static function getMargemLucro($preco_custo, $preco_venda)
+    {
+        $lucro = $preco_venda - $preco_custo;
+        $margem = $lucro / $preco_venda;
+        return round($margem * 100);
+    }
+
+    /**  Calcula valor de lucro
+    * @params $preco_custo
+    * @params $preco_venda
+    * @returns integer
+    */
+    public static function getValorLucro($preco_custo, $preco_venda)
+    {
+        return $preco_venda - $preco_custo;
+    }
 }

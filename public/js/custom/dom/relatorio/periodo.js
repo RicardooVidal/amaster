@@ -9,10 +9,22 @@ const relatorio = new RelatorioController();
 let emitirByPeriodo = function() {
     let data_inicial = document.querySelector('#data-inicial').value;
     let data_final = document.querySelector('#data-final').value;
+    let margem_lucro = false;
+    let valor_lucro = false;
+
+    if (document.querySelector('#margem-lucro').checked) {
+        margem_lucro = true;
+    }
+
+    if (document.querySelector('#valor-lucro').checked) {
+        valor_lucro = true;
+    }
 
     let data = {
         data_inicial,
-        data_final
+        data_final,
+        margem_lucro,
+        valor_lucro
     };
 
     let response = relatorio.byPeriodo(data);

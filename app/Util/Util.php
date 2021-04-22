@@ -3,6 +3,7 @@
 namespace App\Util;
 
 use App\Empresa;
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Auth;
 
 class Util
@@ -94,5 +95,17 @@ class Util
 
         return preg_replace(array_keys($toRemove), array_values($toRemove), $string);
 
+    }
+
+    /**  Calcula valor de lucro
+    * @params $id
+    * @returns integer
+    */
+    public static function getValorCusto($id)
+    {
+        $produto = new ProdutoController();
+        $data = $produto->show($id);
+
+        return $data['estoque']['preco_custo'];
     }
 }

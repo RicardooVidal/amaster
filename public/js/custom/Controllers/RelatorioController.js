@@ -31,7 +31,7 @@ export class RelatorioController extends ApiController {
 
     async byPeriodo(data) {
         showLoading();
-        this.openLink(this._url + 'relatorio/periodo/emitir?data_inicial=' + data.data_inicial + '&data_final=' + data.data_final,'_blank');
+        this.openLink(this._url + 'relatorio/periodo/emitir?data_inicial=' + data.data_inicial + '&data_final=' + data.data_final + '&margem_lucro=' + data.margem_lucro + '&valor_lucro=' + data.valor_lucro,'_blank');
         stopLoading();
         return response;
     }

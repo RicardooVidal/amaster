@@ -15,11 +15,24 @@
             </div>
         </header>
         <section>
+            <?php
+                $margem_lucro = false;
+                $valor_lucro = false;
+
+                if (isset($data['margem_lucro']) && $data['margem_lucro']) {
+                    $margem_lucro = true;
+                }
+            
+                if (isset($data['valor_lucro']) && $data['valor_lucro']) {
+                    $valor_lucro = true;
+                }
+            ?>
             @if (count($data['hits']['hits']) < 1)
                 <p style="text-align: center;">Nada consta</p>
             @endif
             <?php 
                 $valor_total = 0;
+                $lucro_total = 0;
                 $quantidade_total_itens = 0
             ?>
             @foreach($data['hits']['hits'] as $venda)
@@ -55,18 +68,43 @@
                                         <th style="text-align: center;">Quantidade</th>
                                         <th style="text-align: center;">Descrição</th>
                                         <th style="text-align: center;">Preço Unitário</th>
+                                        <th style="text-align: center;">Preço Custo</th>
+                                        @if ($margem_lucro)
+                                            <th style="text-align: center;">Margem</th>
+                                        @endif
+                                        @if ($valor_lucro)
+                                            <th style="text-align: center;">Lucro</th>
+                                        @endif
                                         <th style="text-align: center;">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($venda['_source']['produtos'] as $produto)
-                                <?php 
-                                    $quantidade_total_itens += $produto['quantidade'];
-                                ?>
+                                    <?php $quantidade_total_itens += $produto['quantidade']; ?>
                                     <tr>
                                         <td style="text-align: center;">{{$produto['quantidade']}}</td>
                                         <td style="text-align: center;">{{$produto['descricao']}}</td>
                                         <td style="text-align: center;">R$ {{\App\Util\Money::convertToReais($produto['preco'])}}</td>
+                                        @if ($margem_lucro)
+                                            <?php $valor_custo = 0; ?>
+                                            <td style="text-align: center;">{{\App\Util\Money::getMargemLucro($valor_custo, $produto['preco'])}}% (cada)</td>
+                                        @endif
+
+                                        @if (!isset($produto['preco_custo']))
+                                            <?php $valor_custo = \App\Util\Util::getValorCusto($produto['id']); ?>
+                                        @else
+                                            <?php $valor_custo = $produto['preco_custo']; ?>
+                                        @endif
+                                        <td style="text-align: center;">R$ {{\App\Util\Money::convertToReais($valor_custo)}}</td>
+                                        
+                                        @if ($valor_lucro)
+                                            <?php
+                                                $lucro = $produto['preco'] - $valor_custo;
+                                                $lucro_total += $lucro
+                                            ?>
+                                            <td style="text-align: center;">R$ {{\App\Util\Money::convertToReais($lucro)}} (cada)</td>
+                                        @endif
+
                                         <td style="text-align: center;">R$ {{\App\Util\Money::convertToReais($produto['quantidade'] * $produto['preco'])}}</td>
                                         <td></td>
                                         <td></td>
@@ -91,6 +129,10 @@
                 <tbody>
                     <td style="text-align: right; font-weight: bold">Quantidade Geral:</td>
                     <td style="text-align: center; font-weight: bold">{{$quantidade_total_itens}}</td>
+                    @if ($lucro_total)
+                        <td style="text-align: right; font-weight: bold">Lucro Geral:</td>
+                        <td style="text-align: right; font-weight: bold">R$ {{\App\Util\Money::convertToReais($lucro_total)}}</td>
+                    @endif  
                     <td style="text-align: right; font-weight: bold">Total Geral:</td>
                     <td style="text-align: center; font-weight: bold">R$ {{\App\Util\Money::convertToReais($valor_total)}}</td>
                     <tr></tr>

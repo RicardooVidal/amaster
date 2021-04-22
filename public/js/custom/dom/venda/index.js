@@ -11,6 +11,7 @@ const modal = new ModalHandler();
 const money = new Money();
 
 var produtos = [];
+var ultimo_preco_custo = 0;
 
 let checkVendasPendentes = function() {
     venda.checkVendasPendentes();
@@ -168,6 +169,8 @@ let insertProductVendaArray = function() {
     let quantidade_atual = document.querySelector('#produto-quantidade-atual-estoque').value;
     let quantidade_vender = document.querySelector('#produto-quantidade-vender').value;
     let preco = document.querySelector('#produto-preco-venda').value;
+    let preco_custo = ultimo_preco_custo.toString();
+
     preco = money.getUnmaskedValue(preco);    // console.log(preco);
     
     produtos.push(
@@ -176,7 +179,8 @@ let insertProductVendaArray = function() {
             descricao: descricao + ' ' + unidade_medida,
             quantidade: quantidade_vender,
             preco,
-            categoria
+            preco_custo,
+            categoria,
         }
     )
 
@@ -317,6 +321,7 @@ let produtoVendaFillFields = function(data) {
     document.querySelector('#produto-categoria').value = data._source.categoria;
     document.querySelector('#produto-quantidade-atual-estoque').value = data._source.quantidade_atual;
     document.querySelector('#produto-preco-venda').value = money.convertToReais(data._source.preco);
+    ultimo_preco_custo = data._source.preco_custo;
 
     document.querySelector('#produto-quantidade-vender').focus();
 }

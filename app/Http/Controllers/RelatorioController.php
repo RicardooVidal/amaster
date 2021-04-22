@@ -48,9 +48,19 @@ class RelatorioController extends Controller
         $data['data_requisicao'] = Carbon::now()->format('d/m/Y');
         $data['data_inicial'] = Carbon::parse($request->data_inicial)->format('d/m/Y');
         $data['data_final'] = Carbon::parse($request->data_final)->format('d/m/Y');
+        $data['margem_lucro'] = false;
+        $data['valor_lucro'] = false;
 
-        return PDF::viewToPDF('relatorio.maker.periodo', $data);
-        // return view('relatorio.maker.periodo')->with('data', $data);
+        if ($request->margem_lucro == 'true') {
+            $data['margem_lucro'] = true;
+        }
+
+        if ($request->valor_lucro == 'true') {
+            $data['valor_lucro'] = true;
+        }
+
+        // return PDF::viewToPDF('relatorio.maker.periodo', $data);
+        return view('relatorio.maker.periodo')->with('data', $data);
     }
 
     public function tipo_pagamento()

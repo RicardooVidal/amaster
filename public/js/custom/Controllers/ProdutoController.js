@@ -36,6 +36,11 @@ export class ProdutoController extends ApiController {
         return response;
     }
 
+    searchAll() {
+        let response = super.getResponse('produto/all', 'GET');
+        return response;
+    }
+
     searchByField(field, string) {
         let response = super.getResponse('produto/search?field=' + field + '&string=' + string, 'GET');
         return response;

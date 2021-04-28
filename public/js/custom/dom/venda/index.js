@@ -12,6 +12,7 @@ const money = new Money();
 
 var produtos = [];
 var ultimo_preco_custo = 0;
+let all_products = produto.searchAll();
 
 let checkVendasPendentes = function() {
     venda.checkVendasPendentes();
@@ -399,10 +400,11 @@ document.querySelector("#produto-descricao").oninput = function() {
       return;
     }
   
+    console.log(all_products);
     try {
-      let response = produto.searchByField('descricao', this.value);
+    //   let response = produto.searchByField('descricao', this.value);
       let search = [];
-      response.hits.hits.forEach(function(produto, index) {
+      all_products.hits.hits.forEach(function(produto, index) {
         search.push(produto._source.descricao);
       });
       autocomplete(this, search);
@@ -444,21 +446,21 @@ document.querySelector('#produto-codigo-barra').addEventListener("change", funct
     }
 });
 
-document.querySelector('#produto-descricao').addEventListener("change", function() {
-    let descricao = this.value;
+// document.querySelector('#produto-descricao').addEventListener("change", function() {
+//     let descricao = this.value;
 
-    if (descricao == '' || descricao == undefined) {
-        clearProdutoVendaFields();
-        return;
-    }
+//     if (descricao == '' || descricao == undefined) {
+//         clearProdutoVendaFields();
+//         return;
+//     }
 
-    try {
-        searchByDescricao(descricao);
-    } catch (erro) {
-        productNotFound();
-        return;
-    }
-});
+//     try {
+//         searchByDescricao(descricao);
+//     } catch (erro) {
+//         productNotFound();
+//         return;
+//     }
+// });
 
 document.querySelector('#produto-descricao').addEventListener("focus", function() {
     let descricao = this.value;
